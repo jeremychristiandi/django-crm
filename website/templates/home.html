@@ -1,6 +1,34 @@
 {% extends 'base.html' %} {% block content %} {% if user.is_authenticated %}
-<h1>OKedehhh</h1>
-{% else %}
+<h1>All Records</h1>
+{% if records %}
+<table class="table table-striped table-bordered table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Address</th>
+      <th scope="col">Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for record in records %}
+    <tr>
+      <th scope="row">
+        <a href="{% url 'record' record.id %}">{{record.id}}</a>
+      </th>
+      <td>{{record.first_name}} {{record.last_name}}</td>
+      <td>{{ record.email }}</td>
+      <td>{{ record.phone }}</td>
+      <td>{{ record.address }}</td>
+      <td>{{ record.city }}, {{ record.state }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endif %} {% else %}
 
 <div class="col-md-6 offset-md-3 d-flex flex-column gap-5">
   <h1 class="text-center">Login</h1>

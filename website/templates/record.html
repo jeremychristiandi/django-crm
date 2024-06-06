@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% block content %}
+<div>
+  <h1>Customer Record</h1>
+</div>
+<table class="table">
+  <tbody>
+    <tr>
+      <th scope="row">Name</th>
+      <td>{{customer_record.first_name}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Email</th>
+      <td>{{ customer_record.email }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Phone</th>
+      <td>{{ customer_record.phone }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Address</th>
+      <td>{{ customer_record.address }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Location</th>
+      <td>
+        {{customer_record.city}}, {{customer_record.state}}
+        {{customer_record.zipcode}}
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button type="button" class="btn btn-primary">
+  <a
+    class="text-decoration-none text-white"
+    href="{% url 'edit-record' customer_record.id %}"
+    >Edit</a
+  >
+</button>
+<button type="button" class="btn btn-danger">
+  <a
+    class="text-decoration-none text-white"
+    href="{% url 'delete-record' customer_record.id %}"
+    >Delete</a
+  >
+</button>
+{% endblock %}
